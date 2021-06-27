@@ -1,10 +1,10 @@
 import { baseSchema } from "./BaseModel";
 import * as yup from 'yup';
+import faker from "faker";
 
 export let accountSchema = baseSchema.shape({
-    username: yup.string().required().default('Ale Nguyen'),
+    username: yup.string().required().default(faker.name.findName()),
     password: yup.string().required().default('ILoveAle')
 });
-
 
 export type Account = yup.InferType<typeof accountSchema>
