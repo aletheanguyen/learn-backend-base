@@ -1,6 +1,5 @@
 import * as yup from 'yup';
 import { v4 as uuidv4 } from 'uuid';
-import { textSpanContainsTextSpan, textSpanIsEmpty } from 'typescript';
 
 export enum Status {
     "actived" = "actived",
