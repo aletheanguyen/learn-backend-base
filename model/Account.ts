@@ -1,16 +1,10 @@
-import { BaseModel } from "./BaseModel";
+import { baseSchema } from "./BaseModel";
 import * as yup from 'yup';
 
-export interface Account extends BaseModel {
-    userName: string,
-    password: string
-}
-
-export let accountSchema = yup.object().shape({
-    userName: yup.string().required().min(1),
-    password: yup.string().required().min(1),
-    createdAt: yup.date(),
-    updatedAt: yup.date(),
-    _id: yup.string()
+export let accountSchema = baseSchema.shape({
+    username: yup.string().required().default('Ale Nguyen'),
+    password: yup.string().required().default('ILoveAle')
 });
 
+
+export type Account = yup.InferType<typeof accountSchema>

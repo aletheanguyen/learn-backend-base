@@ -1,12 +1,19 @@
-export interface BaseModel {
-    _id?: string,
-    status?: Status,
-    createdAt: Date,
-    updatedAt: Date
-}
+import * as yup from 'yup';
+import { v4 as uuidv4 } from 'uuid';
+import { textSpanContainsTextSpan, textSpanIsEmpty } from 'typescript';
 
 export enum Status {
-    "active" = "active",
+    "actived" = "actived",
     "deleted" = "deleted",
-    "inactive" = "inactive"
+    "inactived" = "inactived"
 }
+
+export let baseSchema = yup.object({
+    _id: yup.string().default(uuidv4()),
+    status: yup.mixed<Status>().default(Status.actived),
+    createdAt: yup.date().default(new Date()),
+    updatedAt: yup.date().default(new Date()),
+});
+
+export type BaseModel = yup.InferType<typeof baseSchema>
+
