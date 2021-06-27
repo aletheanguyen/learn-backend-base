@@ -1,7 +1,7 @@
 import { BaseModel } from "./BaseModel";
 
 export interface QueryAndSearch<T> {
-    searchText?: { fields: (keyof T)[], text: string}[],
+    searchText?: { fields: (keyof T)[], text: string }[],
     sort?: (keyof T)[],
     filterNumber?: { fields: (keyof T)[], value: number, method: "gt" | "lt" | "eq" }
 }
@@ -13,4 +13,7 @@ export interface Paging<T extends BaseModel> {
     totalPage?: number,
     rows?: T[]
 }
-
+export interface FindProps<T extends BaseModel> extends QueryAndSearch<T> {
+    page?: number
+    pageSize?: number
+}
